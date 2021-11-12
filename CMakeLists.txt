@@ -4,8 +4,7 @@ set(CMAKE_CXX_STARDARD_REQUIRED ON)
 
 project(hello VERSION 1.0)
 
-add_library(foo STATIC foo/src/foo.cpp)
-target_include_directories(foo PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/foo/include)
+add_subdirectory(foo)
 
 add_executable(hello main.cpp)
 target_link_libraries(hello PUBLIC foo)

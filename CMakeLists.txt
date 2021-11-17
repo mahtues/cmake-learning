@@ -4,15 +4,18 @@ set(CMAKE_CXX_STARDARD_REQUIRED ON)
 
 project(hello VERSION 1.0)
 
-find_package(SFML 2 REQUIRED network audio graphics window system)
-find_library(ZLIB z REQUIRED)
-
 add_subdirectory(foo)
 
+find_package(OpenGL REQUIRED)
+find_package(GLUT REQUIRED)
+
 add_executable(hello main.cpp)
-target_include_directories(hello PUBLIC ${SFML_INCLUDE_DIRS})
-target_link_libraries(hello PUBLIC foo ${SFML_LIBRARIES} ${SFML_DEPENDENCIES} ${ZLIB})
+include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
+target_link_libraries(hello PUBLIC foo ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES})
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
-print_all_variables()
+#get_cmake_property(_variableNames VARIABLES)
+#foreach (_variableName ${_variableNames})
+#  message(STATUS "${_variableName}=${${_variableName}}")
+#endforeach()
